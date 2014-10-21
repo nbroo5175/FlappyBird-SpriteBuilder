@@ -16,10 +16,11 @@
 }
 
 -(void)update:(CCTime)delta
-{
-    // put update code here
-}
 
+
+    // put update code here
+{
+}
 // put new methods here
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     //this will get called everytime the player touches the screen
