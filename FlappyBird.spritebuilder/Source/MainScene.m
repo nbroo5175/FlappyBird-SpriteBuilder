@@ -21,8 +21,6 @@
     CCNode *_bush2;
     NSArray *_bushes;
     
-    
-    
     NSTimeInterval _sinceTouch;
     
     NSMutableArray *_obstacles;
@@ -141,8 +139,32 @@
     }
     
     physicsNode.position = ccp(physicsNode.position.x - (character.physicsBody.velocity.x * delta), physicsNode.position.y);
+    for (CCNode *bush in _bushes) {
+        // move the bush
+        bush.position = ccp(bush.position.x -
+                            (character.physicsBody.velocity.x * delta), bush.position.y);
+        
+        // if the left corner is one complete width off the screen,
+        // move it to the right
+        if (bush.position.x <= (-1 * bush.contentSize.width)) {
+            bush.position = ccp(bush.position.x +
+                                2 * bush.contentSize.width, bush.position.y);
+        }
+    }
     
-    // loop the ground
+    // move and loop the clouds
+    for (CCNode *cloud in _clouds) {
+        // move the cloud
+        cloud.position = ccp(cloud.position.x -
+                             (character.physicsBody.velocity.x * delta), cloud.position.y);
+        
+        // if the left corner is one complete width off the screen,
+        // move it to the right
+        if (cloud.position.x <= (-1 * cloud.contentSize.width)) {
+            cloud.position = ccp(cloud.position.x +
+                                 2 * cloud.contentSize.width, cloud.position.y);
+        }
+    }    // loop the ground
     for (CCNode *ground in _grounds) {
         // get the world position of the ground
         CGPoint groundWorldPosition = [physicsNode convertToWorldSpace:ground.position];
