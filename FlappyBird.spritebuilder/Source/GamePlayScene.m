@@ -8,11 +8,11 @@
 
 
 {
-    [self addObstacle];    // your code here
+    // your code here
     character = (Character*)[CCBReader load:@"Character"];
     [physicsNode addChild:character];
-timeSinceObstacle = 0.0f;
-
+    [self addObstacle];
+    timeSinceObstacle = 0.0f;
 }
 
 -(void)update:(CCTime)delta
